@@ -1,0 +1,14 @@
+[Unit]
+Description=Tmux Statusline Pywal Monitor
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=%h/.local/bin/tmux-statusline-monitor
+ExecStopPost=%h/.local/bin/tmux-statusline-restore
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

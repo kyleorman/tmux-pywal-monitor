@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-pywal-monitor/config.sh"
+if [[ -f "$CONFIG_FILE" ]]; then
+    source "$CONFIG_FILE"
+fi
+
+TMUX_CONF="${TMUX_CONF:-$HOME/.tmuxline.conf}"
+
+if [[ -f "$TMUX_CONF.backup" ]]; then
+    mv "$TMUX_CONF.backup" "$TMUX_CONF"
+    tmux source-file "$TMUX_CONF" 2>/dev/null || true
+fi
